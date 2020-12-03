@@ -1,0 +1,19 @@
+{
+  "name": "example_api_node_mongo",
+  "version": "1.0.0",
+  "description": "api example node mongo with github action ci/cd",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nmcodes/example_api_node_mongo.git"
+  },
+  "author": "nmcodes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nmcodes/example_api_node_mongo/issues"
+  },
+  "homepage": "https://github.com/nmcodes/example_api_node_mongo#readme"
+}
