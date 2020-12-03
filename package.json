@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/nmcodes/example_api_node_mongo/issues"
   },
-  "homepage": "https://github.com/nmcodes/example_api_node_mongo#readme"
+  "homepage": "https://github.com/nmcodes/example_api_node_mongo#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
