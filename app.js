@@ -5,8 +5,8 @@ const mongoose = require('mongoose');
 const app = express();
 
 mongoose.connect('mongodb+srv://admin:5ywvuz3M4YTuNrQt@cluster0.jf5ky.mongodb.net/<dbname>?retryWrites=true&w=majority', { useUnifiedTopology: true })
-				.then(() => { console.log('Successully onnectedto MongoDB Atlas !')})
-				.catch((error) => console.error('Unable to connect to MongoDB Atlas', error));
+				.then(() => { console.log('\nSuccessully onnected to MongoDB Atlas !\n')})
+				.catch((error) => console.error('\nUnable to connect to MongoDB Atlas\n', error));
 
 app.use(bodyParser.json());
 
