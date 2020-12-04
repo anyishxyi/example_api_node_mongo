@@ -1,14 +1,12 @@
-// MONGODB PASSWORD : 5ywvuz3M4YTuNrQt
-// MONGODB CONNECTION : mongodb+srv://admin:<password>@cluster0.jf5ky.mongodb.net/<dbname>?retryWrites=true&w=majority
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://admin:5ywvuz3M4YTuNrQt@cluster0.jf5ky.mongodb.net/<dbname>?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://admin:5ywvuz3M4YTuNrQt@cluster0.jf5ky.mongodb.net/<dbname>?retryWrites=true&w=majority', { useUnifiedTopology: true })
 				.then(() => { console.log('Successully onnectedto MongoDB Atlas !')})
-				.catch((error) => console.error(error));
+				.catch((error) => console.error('Unable to connect to MongoDB Atlas', error));
 
 app.use(bodyParser.json());
 
