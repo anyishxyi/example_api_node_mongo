@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Thing = require('../models/thing');
 
-router.post('/api/stuff', (req, res, next) => {
+router.post('/', (req, res, next) => {
   const thing = new Thing({
     title: req.body.title,
     description: req.body.description,
@@ -26,7 +26,7 @@ router.post('/api/stuff', (req, res, next) => {
   );
 });
 
-router.get('/api/stuff/:id', (req, res, next) => {
+router.get('/:id', (req, res, next) => {
   Thing.findOne({
     _id: req.params.id
   }).then(
@@ -42,7 +42,7 @@ router.get('/api/stuff/:id', (req, res, next) => {
   );
 });
 
-router.get('/api/stuff', (req, res, next) => {
+router.get('/', (req, res, next) => {
   Thing.find().then(
     (things) => {
       res.status(200).json(things);
@@ -56,7 +56,7 @@ router.get('/api/stuff', (req, res, next) => {
   );
 });
 
-router.put('/api/stuff/:id', (req, res, next) => {
+router.put('/:id', (req, res, next) => {
   const thing = new Thing({
     _id: req.params.id,
     title: req.body.title,
@@ -80,7 +80,7 @@ router.put('/api/stuff/:id', (req, res, next) => {
   );
 });
 
-router.delete('/api/stuff/:id', (req, res, next) => {
+router.delete('/:id', (req, res, next) => {
   Thing.deleteOne({_id: req.params.id}).then(
     () => {
       res.status(200).json({
