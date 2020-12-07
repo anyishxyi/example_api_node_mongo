@@ -26,6 +26,7 @@ app.post('/api/stuff', (req, res, next) => {
     price: req.body.price,
     userId: req.body.userId
   });
+  // console.log(req.body)
   thing.save().then(
     () => {
       res.status(201).json({
