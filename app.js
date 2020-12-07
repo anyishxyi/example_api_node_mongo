@@ -5,7 +5,7 @@ const Thing = require('./models/thing');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://admin:5ywvuz3M4YTuNrQt@cluster0.jf5ky.mongodb.net/<dbname>?retryWrites=true&w=majority', { useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://admin:5ywvuz3M4YTuNrQt@cluster0.jf5ky.mongodb.net/<dbname>?retryWrites=true&w=majority', { useUnifiedTopology: true, useNewUrlParser: true })
 				.then(() => { console.log('\nSuccessully onnected to MongoDB Atlas !\n')})
 				.catch((error) => console.error('\nUnable to connect to MongoDB Atlas\n', error));
 
