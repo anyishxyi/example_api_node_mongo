@@ -1,4 +1,4 @@
-const Thing = require('../models/thing');
+import Thing from '../models/thing';
 
 exports.createThing = (req, res, next) => {
   const thing = new Thing({
