@@ -1,10 +1,10 @@
 {
   "name": "example_api_node_mongo",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "api example node mongo with github action ci/cd",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server",
+    "start": "node server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -1,6 +1,7 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+import express from 'express';
+import bodyParser from 'bodyParser';
+import mongoose from 'mongoose';
+
 const stuffRoutes = require('./routes/thing');
 const userRoutes = require('./routes/user');
 
