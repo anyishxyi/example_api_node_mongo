@@ -1,8 +1,10 @@
 "use strict";
 
-var http = require('http');
+var _http = _interopRequireDefault(require("http"));
 
-var app = require('./app');
+var _app = _interopRequireDefault(require("./app"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var normalizePort = function normalizePort(val) {
   var port = parseInt(val, 10);
@@ -19,7 +21,8 @@ var normalizePort = function normalizePort(val) {
 };
 
 var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+
+_app["default"].set('port', port);
 
 var errorHandler = function errorHandler(error) {
   if (error.syscall !== 'listen') {
@@ -45,7 +48,8 @@ var errorHandler = function errorHandler(error) {
   }
 };
 
-var server = http.createServer(app);
+var server = _http["default"].createServer(_app["default"]);
+
 server.on('error', errorHandler);
 server.on('listening', function () {
   var address = server.address();

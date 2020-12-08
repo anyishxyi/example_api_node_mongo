@@ -1,6 +1,7 @@
 import Thing from '../models/thing';
 
 exports.createThing = (req, res, next) => {
+  console.log('hey');
   const thing = new Thing({
     title: req.body.title,
     description: req.body.description,
@@ -16,6 +17,7 @@ exports.createThing = (req, res, next) => {
     }
   ).catch(
     (error) => {
+      console.log('error', error);
       res.status(400).json({
         error: error
       });

@@ -1,9 +1,12 @@
 "use strict";
 
-var Thing = require('../models/thing');
+var _thing = _interopRequireDefault(require("../models/thing"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 exports.createThing = function (req, res, next) {
-  var thing = new Thing({
+  console.log('hey');
+  var thing = new _thing["default"]({
     title: req.body.title,
     description: req.body.description,
     imageUrl: req.body.imageUrl,
@@ -15,6 +18,7 @@ exports.createThing = function (req, res, next) {
       message: 'Post saved successfully!'
     });
   })["catch"](function (error) {
+    console.log('error', error);
     res.status(400).json({
       error: error
     });
@@ -22,7 +26,7 @@ exports.createThing = function (req, res, next) {
 };
 
 exports.getOneThing = function (req, res, next) {
-  Thing.findOne({
+  _thing["default"].findOne({
     _id: req.params.id
   }).then(function (thing) {
     res.status(200).json(thing);
@@ -34,7 +38,7 @@ exports.getOneThing = function (req, res, next) {
 };
 
 exports.modifyThing = function (req, res, next) {
-  var thing = new Thing({
+  var thing = new _thing["default"]({
     _id: req.params.id,
     title: req.body.title,
     description: req.body.description,
@@ -42,7 +46,8 @@ exports.modifyThing = function (req, res, next) {
     price: req.body.price,
     userId: req.body.userId
   });
-  Thing.updateOne({
+
+  _thing["default"].updateOne({
     _id: req.params.id
   }, thing).then(function () {
     res.status(201).json({
@@ -56,7 +61,7 @@ exports.modifyThing = function (req, res, next) {
 };
 
 exports.deleteThing = function (req, res, next) {
-  Thing.deleteOne({
+  _thing["default"].deleteOne({
     _id: req.params.id
   }).then(function () {
     res.status(200).json({
@@ -70,7 +75,7 @@ exports.deleteThing = function (req, res, next) {
 };
 
 exports.getAllStuff = function (req, res, next) {
-  Thing.find().then(function (things) {
+  _thing["default"].find().then(function (things) {
     res.status(200).json(things);
   })["catch"](function (error) {
     res.status(400).json({

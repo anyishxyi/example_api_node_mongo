@@ -1,12 +1,12 @@
 import express from 'express';
-import bodyParser from 'bodyParser';
+import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
-const stuffRoutes = require('./routes/thing');
-const userRoutes = require('./routes/user');
+import stuffRoutes from './routes/thing';
+import userRoutes from './routes/user';
 
 const app = express();
 
