@@ -3,29 +3,27 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
 exports.signup = (req, res, next) => {
-  bcrypt.hash(req.body.password, 10).then(
-    (hash) => {
-			console.log('hash', hash);
-      const user = new User({
-        email: req.body.email,
-        password: hash
-      });
-      user.save().then(
-        () => {
-          res.status(201).json({
-            message: 'User added successfully!'
-          });
-        }
-      ).catch(
-        (error) => {
-          res.status(500).json({
-            error: error
-          });
-        }
-      );
-    }
-  ).catch((error) =>{
-		console.error('error while encrypting password');
+	bcrypt.genSalt(10, function(err, salt) {
+		bcrypt.hash(req.body.password, salt).then(
+			(hash) => {
+				const user = new User({
+					email: req.body.email,
+					password: hash
+				});
+				user.save().then(
+					() => {
+						res.status(201).json({
+							message: 'User added successfully!'
+						});
+					}
+				).catch((error) => {
+					res.status(500).json({ error: error });
+				});
+			}
+		).catch((error) =>{
+			console.error('error while encrypting password');
+			res.status(500).json({ error: error });
+		});
 	});
 };
 
