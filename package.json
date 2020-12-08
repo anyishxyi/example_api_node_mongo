@@ -12,17 +12,27 @@
     "dev": "NODE_ENV=development npm-run-all build server",
     "prod": "NODE_ENV=production npm-run-all build server",
     "watch:dev": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "babel": {
     "presets": [
       "@babel/preset-env"
     ]
   },
-  "nodemonConfig": { 
+  "jest": { 
+    "testEnvironment": "node"
+  },
+  "nodemonConfig": {
     "exec": "npm run dev",
-    "watch": ["server/*", "public/*"],
-    "ignore": ["**/__tests__/**", "*.test.js", "*.spec.js"]
+    "watch": [
+      "server/*",
+      "public/*"
+    ],
+    "ignore": [
+      "**/__tests__/**",
+      "*.test.js",
+      "*.spec.js"
+    ]
   },
   "repository": {
     "type": "git",
@@ -50,5 +60,8 @@
     "npm-run-all": "^4.1.5",
     "path": "^0.12.7",
     "rimraf": "^3.0.2"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
   }
 }
