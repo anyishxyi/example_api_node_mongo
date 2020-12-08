@@ -29,4 +29,4 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use('/api/stuff', stuffRoutes);
 app.use('/api/auth', userRoutes);
 
-module.exports = app;
+export default app;

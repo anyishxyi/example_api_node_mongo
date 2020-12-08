@@ -5,7 +5,11 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
+    "transpile": "babel ./server --out-dir dist-server",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "babel": {
+    "presets": ["@babel/preset-env"]
   },
   "repository": {
     "type": "git",
@@ -18,6 +22,9 @@
   },
   "homepage": "https://github.com/nmcodes/example_api_node_mongo#readme",
   "dependencies": {
+    "@babel/cli": "^7.12.8",
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
@@ -26,6 +33,8 @@
     "mongoose": "^5.11.4",
     "mongoose-unique-validator": "^2.0.3",
     "morgan": "^1.10.0",
-    "path": "^0.12.7"
+    "nodemon": "^2.0.6",
+    "path": "^0.12.7",
+    "rimraf": "^3.0.2"
   }
 }
