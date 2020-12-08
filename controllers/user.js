@@ -5,6 +5,7 @@ const User = require('../models/user');
 exports.signup = (req, res, next) => {
   bcrypt.hash(req.body.password, 10).then(
     (hash) => {
+			console.log('hash', hash);
       const user = new User({
         email: req.body.email,
         password: hash
@@ -23,7 +24,9 @@ exports.signup = (req, res, next) => {
         }
       );
     }
-  );
+  ).catch((error) =>{
+		console.error('error while encrypting password');
+	});
 };
 
 exports.login = (req, res, next) => {
