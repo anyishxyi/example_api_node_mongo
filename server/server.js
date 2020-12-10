@@ -1,5 +1,6 @@
 import http from "http";
 import app from "./app";
+import 'regenerator-runtime/runtime';
 
 const normalizePort = val => {
   const port = parseInt(val, 10);

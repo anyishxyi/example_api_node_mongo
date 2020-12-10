@@ -3,15 +3,15 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.default = void 0;
 
 var _mongoose = _interopRequireDefault(require("mongoose"));
 
 var _mongooseUniqueValidator = _interopRequireDefault(require("mongoose-unique-validator"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var userSchema = _mongoose["default"].Schema({
+const userSchema = _mongoose.default.Schema({
   email: {
     type: String,
     required: true,
@@ -23,8 +23,8 @@ var userSchema = _mongoose["default"].Schema({
   }
 });
 
-userSchema.plugin(_mongooseUniqueValidator["default"]);
+userSchema.plugin(_mongooseUniqueValidator.default);
 
-var _default = _mongoose["default"].model('User', userSchema);
+var _default = _mongoose.default.model('User', userSchema);
 
-exports["default"] = _default;
+exports.default = _default;

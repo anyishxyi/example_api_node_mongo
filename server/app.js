@@ -1,3 +1,4 @@
+require('dotenv').config();
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
@@ -10,7 +11,7 @@ import userRoutes from './routes/user';
 
 const app = express();
 
-mongoose.connect('mongodb+srv://admin:5ywvuz3M4YTuNrQt@cluster0.jf5ky.mongodb.net/<dbname>?retryWrites=true&w=majority', { useUnifiedTopology: true, useNewUrlParser: true })
+mongoose.connect(process.env.__MONGO_URI__, { useUnifiedTopology: true, useNewUrlParser: true })
 				.then(() => { console.log('\nSuccessully connected to MongoDB Atlas !\n')})
 				.catch((error) => console.error('\nUnable to connect to MongoDB Atlas\n', error));
 

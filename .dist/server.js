@@ -4,10 +4,12 @@ var _http = _interopRequireDefault(require("http"));
 
 var _app = _interopRequireDefault(require("./app"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+require("regenerator-runtime/runtime");
 
-var normalizePort = function normalizePort(val) {
-  var port = parseInt(val, 10);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const normalizePort = val => {
+  const port = parseInt(val, 10);
 
   if (isNaN(port)) {
     return val;
@@ -20,17 +22,17 @@ var normalizePort = function normalizePort(val) {
   return false;
 };
 
-var port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '3000');
 
-_app["default"].set('port', port);
+_app.default.set('port', port);
 
-var errorHandler = function errorHandler(error) {
+const errorHandler = error => {
   if (error.syscall !== 'listen') {
     throw error;
   }
 
-  var address = server.address();
-  var bind = typeof address === 'string' ? 'pipe ' + address : 'port: ' + port;
+  const address = server.address();
+  const bind = typeof address === 'string' ? 'pipe ' + address : 'port: ' + port;
 
   switch (error.code) {
     case 'EACCES':
@@ -48,12 +50,12 @@ var errorHandler = function errorHandler(error) {
   }
 };
 
-var server = _http["default"].createServer(_app["default"]);
+const server = _http.default.createServer(_app.default);
 
 server.on('error', errorHandler);
-server.on('listening', function () {
-  var address = server.address();
-  var bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + port;
+server.on('listening', () => {
+  const address = server.address();
+  const bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + port;
   console.log('\nListening on ' + bind);
 });
 server.listen(port);
