@@ -1,26 +1,30 @@
 require('dotenv').config();
 import mongoose from 'mongoose';
-import User from '../models/user';
-const userData = { "email": "test@test.me", "password": "testtesttest" }
+import bcrypt from 'bcrypt';
+import UserModel from '../models/user';
+const userData = { email: "test2@test.com", password: "testtesttest" };
 
 describe('User Model Test', () => {
-	beforeAll(async () => {
-		await mongoose.connect(process.env.__MONGO_URI__, { useNewUrlParser: true, useCreateIndex: true }, (err) => {
-			if (err) {
-				console.error(err);
-				process.exit(1);
-			}
-		});
+	beforeAll(() => {
+		mongoose.connect(process.env.__MONGO_URI__, { useUnifiedTopology: true, useNewUrlParser: true })
+						.then(() => { console.log('\nSuccessully connected to MongoDB Atlas !\n')})
+						.catch((error) => console.error('\nUnable to connect to MongoDB Atlas\n', error));
 	});
 
 	it('create & save user successfully', async () => {
-		const validUser = new UserModel(userData);
+		const salt = bcrypt.genSaltSync(10);
+		const hash = bcrypt.hashSync(userData.password, salt);
+
+		if(!hash) {
+			console.error('error while encrypting password');
+			exit(1);
+		}
+
+		const validUser = new UserModel({ email: userData.email, password: hash });
+		// console.log('validUser', validUser);
 		const savedUser = await validUser.save();
 
 		expect(savedUser._id).toBeDefined();
-		expect(savedUser.name).toBe(userData.name);
-		expect(savedUser.gender).toBe(userData.gender);
-		expect(savedUser.dob).toBe(userData.dob);
-		expect(savedUser.loginUsing).toBe(userData.loginUsing);
+		expect(savedUser.email).toBe(userData.email);
 	});
 })

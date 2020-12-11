@@ -8,4 +8,6 @@ const userSchema = mongoose.Schema({
 
 userSchema.plugin(uniqueValidator);
 
-export default mongoose.model('User', userSchema);
+const userModel = new mongoose.model('User', userSchema);
+
+export default userModel;
