@@ -2,29 +2,24 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../models/user';
 
-exports.signup = (req, res, next) => {
-	bcrypt.genSalt(10, function(err, salt) {
-		bcrypt.hash(req.body.password, salt).then(
-			(hash) => {
-				const user = new User({
-					email: req.body.email,
-					password: hash
-				});
-				user.save().then(
-					() => {
-						res.status(201).json({
-							message: 'User added successfully!'
-						});
-					}
-				).catch((error) => {
-					res.status(500).json({ error: error });
-				});
-			}
-		).catch((error) =>{
-			console.error('error while encrypting password');
-			res.status(500).json({ error: error });
-		});
-	});
+exports.signup = async (req, res, next) => {
+  const pass = req.body.password ? req.body.password : '';
+  if(!pass) res.status(500).json({ error: 'error while hashing password' });
+
+  const salt = bcrypt.genSaltSync(10);
+  const hash = bcrypt.hashSync(pass, salt);
+
+  if(!hash) {
+    console.error('error while encrypting password');
+    res.status(500).json({ error: 'error while hashing password' });   
+  }
+
+  const user = new User({ email: req.body.email, password: hash });
+  const savedUser = await user.save();
+
+  if(!savedUser) res.status(500).json({ error: error });
+
+  res.status(201).json({ userSaved: savedUser });
 };
 
 exports.login = (req, res, next) => {
